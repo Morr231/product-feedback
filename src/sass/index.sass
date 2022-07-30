@@ -1,0 +1,25 @@
+@import "mixins"
+@import "var"
+@import "components"
+
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+    font-family: 'Roboto', sans-serif
+
+html
+    font-size: 62.5%
+    overflow-x: hidden
+
+    @include respond(tab-land)
+        font-size: 56.25%
+
+    @include respond(tab-port)
+        font-size: 50%
+
+    @include respond(big-desktop)
+        font-size: 75%
+
+body
+    background: $background-color

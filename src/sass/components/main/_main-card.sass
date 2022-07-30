@@ -1,0 +1,62 @@
+.main-card
+    background-color: $white-color
+
+    padding: 2.4rem
+    border-radius: 0.8rem
+
+    display: flex
+
+    border: 1px solid transparent
+
+    &:hover
+        border: 1px solid $purple-color-1
+
+        .main-card
+            &-title
+                color: $blue-color-1
+
+    &-upvotes
+        width: 10%
+        margin-right: 3rem
+
+    &-title
+        margin-bottom: 1rem
+
+    &-description
+        margin-bottom: 1rem
+
+        font-size: 1.5rem
+
+    &-info
+        width: 70%
+
+    &-category
+        display: flex
+        justify-content: center
+        align-items: center
+
+        height: 3rem
+        width: max-content
+        padding: 0 1.6rem
+
+        border-radius: 0.8rem
+
+        background-color: $grey-color-1
+        color: $blue-color-1
+
+        text-transform: capitalize
+        font-weight: 700
+        font-size: 1.5rem
+
+    &-comments
+        width: 15%
+
+        display: flex
+        justify-content: flex-end
+        align-items: center
+
+        font-size: 2rem
+
+        &__icon
+            color: $grey-color-2
+            margin-right: 1rem

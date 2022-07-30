@@ -1,0 +1,107 @@
+.add-feedback
+    max-width: 50.6rem
+    margin: 0 auto
+
+    padding-top: 3rem
+
+    &-plus
+        background: radial-gradient(128.88% 128.88% at 103.9% -10.39%,#e84d70 0,#a337f6 53.09%,#28a7ed 100%)
+        color: $white-color
+
+        border-radius: 50%
+
+        position: absolute
+        left: 2.4rem
+        top: -3rem
+
+        padding: 1rem 2rem
+        font-size: 3.4rem
+
+    &-link
+        font-size: 1.5rem
+        margin-bottom: 5rem
+
+    &-main
+        background-color: $white-color
+        border-radius: 0.8rem
+
+        padding: 3.4rem
+
+        position: relative
+
+    &-header
+        margin-bottom: 1.5rem
+
+    &-form
+
+        &__el
+            display: flex
+            flex-direction: column
+
+            margin-bottom: 1rem
+
+        &__label_main
+            font-size: 1.4rem
+            font-weight: 700
+
+            margin-bottom: 1rem
+
+        &__label_secondary
+            font-size: 1.4rem
+            color: $grey-color-3
+
+            margin-bottom: 0.5rem
+
+        &__input, &__select, &__textarea
+            border: none
+            outline: none
+
+            border-radius: 0.8rem
+
+            height: 4.8rem
+
+            padding-left: 1.4rem
+
+            background-color: $grey-color-1
+            color: $grey-color-3
+
+            border: 1px solid transparent
+
+            &:hover, &:focus
+                border: 1px solid $blue-color-1
+
+        &__textarea
+            height: fit-content
+
+        &__buttons
+            display: flex
+            justify-content: flex-end
+
+        &__button
+            border: none
+            outline: none
+
+            border-radius: 0.8rem
+
+            height: 4.4rem
+
+            padding: 0 1.8rem
+            margin-top: 2rem
+
+            color: $white-color
+            font-size: 1.4rem
+
+            &:not(&:last-child)
+                margin-right: 1rem
+
+            &:nth-child(1)
+                background-color: $blue-color-3
+
+                &:hover
+                    background-color: $blue-color-4
+
+            &:nth-child(2)
+                background-color: $purple-color-1
+
+                &:hover
+                    background-color: $purple-color-2

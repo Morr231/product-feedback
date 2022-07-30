@@ -1,0 +1,104 @@
+@import "main-card"
+
+.main
+    max-width: 108rem
+    margin: 0 auto
+    padding-top: 3.5rem
+
+    &-container
+        display: flex
+
+    &-left
+        width: 25%
+
+        &__header
+            height: 13rem
+            padding: 2.4rem
+
+            background: radial-gradient(128.88% 128.88% at 103.9% -10.39%,#e84d70 0,#a337f6 53.09%,#28a7ed 100%)
+
+            border-radius: 0.8rem
+
+            color: $white-color
+
+            display: flex
+            flex-direction: column
+            justify-content: flex-end
+
+            &_el
+                height: 25%
+
+        &__filter
+            padding: 2.4rem
+            border-radius: 0.8rem
+
+            background-color: $white-color
+
+    &-roadmap
+        padding: 2.4rem
+        border-radius: 0.8rem
+
+        background-color: $white-color
+
+        &-top
+            display: flex
+            justify-content: space-between
+            align-items: center
+
+    &-right
+        width: 75%
+
+        &__suggestions_number
+            margin-right: 2rem
+
+        &__header
+            display: flex
+            align-items: center
+            justify-content: space-between
+
+            padding: 1.4rem 2.4rem
+            border-radius: 0.8rem
+
+            background-color: $blue-color-3
+            color: $white-color
+
+            &_sort
+                position: relative
+
+                &_container
+                    display: flex
+                    align-items: center
+
+                &_text
+                    font-size: 1.4rem
+                    margin-right: 1.5rem
+
+                &_dropdown
+                    display: flex
+                    align-items: center
+
+                    font-size: 1.4rem
+
+                    cursor: pointer
+
+                    &_text
+                        margin-right: 1rem
+
+            &_button
+                border: none
+                outline: none
+
+                border-radius: 0.8rem
+
+                padding: 1rem 1.5rem
+
+                background-color: $purple-color-1
+                color: $white-color
+
+                font-size: 1.5rem
+                font-weight: 700
+
+                cursor: pointer
+
+                &:hover
+                    background-color: $purple-color-2
