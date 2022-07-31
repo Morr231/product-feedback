@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const MainButton = ({ text, action, active, upvote }) => {
+const MainButton = ({ text, action, active, upvote, liked }) => {
     const [clickCounter, setClickCounter] = useState(0);
 
     const handleClick = () => {
@@ -18,7 +18,7 @@ const MainButton = ({ text, action, active, upvote }) => {
                     ? "main-button-active"
                     : !active && clickCounter % 2 != 0
                     ? "main-button-active"
-                    : ""
+                    : liked && "main-button-active"
             }`}
             style={upvote && { margin: 0 }}
             onClick={handleClick}

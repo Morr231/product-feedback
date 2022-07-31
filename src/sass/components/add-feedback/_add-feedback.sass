@@ -59,6 +59,7 @@
             border-radius: 0.8rem
 
             height: 4.8rem
+            width: 100%
 
             padding-left: 1.4rem
 
@@ -67,17 +68,34 @@
 
             border: 1px solid transparent
 
-            &:hover, &:focus
+            transition: all 0.3s
+
+            &:hover
                 border: 1px solid $blue-color-1
 
+            &:focus
+                border: 1px solid $blue-color-1
+
+                &:invalid
+                    border: 1px solid $red-color-1
+
         &__textarea
+            padding-top: 1.4rem
+            padding-right: 1.4rem
             height: fit-content
 
         &__buttons
             display: flex
             justify-content: flex-end
 
-        &__button
+            &_container
+                width: 50%
+
+                display: flex
+                justify-content: flex-start
+                align-items: center
+
+        &__button, &__delete
             border: none
             outline: none
 
@@ -91,8 +109,7 @@
             color: $white-color
             font-size: 1.4rem
 
-            &:not(&:last-child)
-                margin-right: 1rem
+            margin-right: 1rem
 
             &:nth-child(1)
                 background-color: $blue-color-3
@@ -100,8 +117,13 @@
                 &:hover
                     background-color: $blue-color-4
 
-            &:nth-child(2)
-                background-color: $purple-color-1
+        &__delete
+            background-color: $red-color-1 !important
 
-                &:hover
-                    background-color: $purple-color-2
+.feedback-submit
+    margin-right: 0rem
+
+    background-color: $purple-color-1 !important
+
+    &:hover
+        background-color: $purple-color-2 !important

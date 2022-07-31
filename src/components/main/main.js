@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 
 import MainButton from "../buttons/main-button";
 import SortDropdown from "../dropdown/sort-dropdown";
@@ -13,8 +12,6 @@ const Main = ({ products }) => {
     const [leftFilter, setLeftFilter] = useState("all");
 
     const [showSortDropdown, setShowSortDropdown] = useState(false);
-
-    console.log(products);
 
     return (
         <div className="main">
@@ -69,7 +66,57 @@ const Main = ({ products }) => {
                             <div className="main-roadmap-header header-large">
                                 Roadmap
                             </div>
-                            <div className="main-roadmap-link">View</div>
+                            <Link to="/roadmap">
+                                <div className="main-roadmap-link">View</div>
+                            </Link>
+                        </div>
+
+                        <div className="main-roadmap-numbers">
+                            <div className="main-roadmap-number">
+                                <div className="main-roadmap-number__container">
+                                    <div className="main-roadmap-number-icon planned-circle"></div>
+                                    <div className="main-roadmap-number-text">
+                                        Planned
+                                    </div>
+                                </div>
+                                <div className="main-roadmap-number-main">
+                                    {
+                                        products.filter(
+                                            (el) => el.status === "planned"
+                                        ).length
+                                    }
+                                </div>
+                            </div>
+                            <div className="main-roadmap-number">
+                                <div className="main-roadmap-number__container">
+                                    <div className="main-roadmap-number-icon in-progress-circle"></div>
+                                    <div className="main-roadmap-number-text">
+                                        In-Progress
+                                    </div>
+                                </div>
+                                <div className="main-roadmap-number-main">
+                                    {
+                                        products.filter(
+                                            (el) => el.status === "in-progress"
+                                        ).length
+                                    }
+                                </div>
+                            </div>
+                            <div className="main-roadmap-number">
+                                <div className="main-roadmap-number__container">
+                                    <div className="main-roadmap-number-icon live-cirlce"></div>
+                                    <div className="main-roadmap-number-text">
+                                        Live
+                                    </div>
+                                </div>
+                                <div className="main-roadmap-number-main">
+                                    {
+                                        products.filter(
+                                            (el) => el.status === "live"
+                                        ).length
+                                    }
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -145,23 +192,16 @@ const Main = ({ products }) => {
                                 return el.category === leftFilter;
                             })
                             .map((el) => (
-                                <Link
-                                    to={`product/${el.id}`}
-                                    state={{ product: el }}
-                                    style={{
-                                        textDecoration: "none",
-                                        color: "inherit",
-                                    }}
-                                >
-                                    <MainCard
-                                        key={el.id}
-                                        upvotes={el.upvotes}
-                                        title={el.title}
-                                        category={el.category}
-                                        description={el.description}
-                                        comments={el.comments}
-                                    />
-                                </Link>
+                                <MainCard
+                                    key={el.id}
+                                    upvotes={el.upvotes}
+                                    title={el.title}
+                                    category={el.category}
+                                    description={el.description}
+                                    comments={el.comments}
+                                    id={el.id}
+                                    upvoted={el.upvoted}
+                                />
                             ))}
                     </div>
                 </div>

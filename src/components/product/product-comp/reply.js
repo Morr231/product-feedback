@@ -1,14 +1,20 @@
 import { useState } from "react";
 
-import Reply from "./reply";
-
 import { v4 as uuidv4 } from "uuid";
 
 import { useDispatch } from "react-redux";
 import { userUpdatedActions } from "../../../store/userUpdated";
 
-const Comment = ({ commentId, productId, name, username, text, replies }) => {
+const Reply = ({
+    commentId,
+    productId,
+    name,
+    username,
+    replyingTo,
+    content,
+}) => {
     const dispatch = useDispatch();
+
     const [showReply, setShowReply] = useState(false);
 
     const handleReply = (e) => {
@@ -41,15 +47,10 @@ const Comment = ({ commentId, productId, name, username, text, replies }) => {
     };
 
     return (
-        <div className="comment">
-            <div className="comment-left">
-                <div className="comment-img"></div>
-                {replies && replies.length != 0 && (
-                    <div className="comment-line-vertical"></div>
-                )}
-            </div>
+        <div className="comment mar-b-large">
+            <div className="comment-img mar-r-large"></div>
 
-            <div className="comment-info">
+            <div className="comment-info" style={{ width: "90%" }}>
                 <div className="comment-name">{name}</div>
                 <div className="comment-username">
                     <div className="comment-username__text">@{username}</div>
@@ -60,7 +61,12 @@ const Comment = ({ commentId, productId, name, username, text, replies }) => {
                         Reply
                     </div>
                 </div>
-                <div className="comment-text mar-b-large">{text}</div>
+                <div className="comment-text">
+                    <span className="comment-text-replying">
+                        @{replyingTo}{" "}
+                    </span>
+                    {content}
+                </div>
 
                 {showReply && (
                     <form className="comment-make-reply" onSubmit={handleReply}>
@@ -82,21 +88,9 @@ const Comment = ({ commentId, productId, name, username, text, replies }) => {
                         </button>
                     </form>
                 )}
-
-                {replies &&
-                    replies.map((el) => (
-                        <Reply
-                            commentId={commentId}
-                            productId={productId}
-                            name={el.user.name}
-                            username={el.user.username}
-                            replyingTo={el.replyingTo}
-                            content={el.content}
-                        />
-                    ))}
             </div>
         </div>
     );
 };
 
-export default Comment;
+export default Reply;

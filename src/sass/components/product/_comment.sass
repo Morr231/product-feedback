@@ -1,0 +1,73 @@
+.comment
+    display: flex
+
+    &-left
+        margin-right: 2.4rem
+
+    &-img
+        border-radius: 50%
+        background-color: grey
+
+        width: 4rem
+        height: 4rem
+
+    &-info
+        width: calc(100% - 4rem)
+
+    &-name
+        font-size: 1.4rem
+        line-height: 1.8rem
+        font-weight: 700
+
+        margin-bottom: 0.3rem
+
+    &-username
+        display: flex
+        justify-content: space-between
+
+        margin-bottom: 1.5rem
+
+        font-size: 1.2rem
+
+        &__text
+            color: $grey-color-3
+
+        &__reply
+            color: $blue-color-1
+            cursor: pointer
+
+    &-text
+        font-size: 1.4rem
+
+        color: $grey-color-3
+
+        &-replying
+            color: $purple-color-1
+
+    &-line
+        border: none
+        background-color: rgba(0, 0, 0, 0.08)
+        height: 1px
+
+        width: 100%
+
+        margin-bottom: 3rem
+
+    &-line-vertical
+        border: none
+        background-color: rgba(0, 0, 0, 0.08)
+        height: 60%
+
+        width: 1px
+
+        margin: 0 auto
+        margin-top: 3rem
+
+    &-make-reply
+        display: flex
+        justify-content: space-between
+
+        align-items: flex-start
+
+        margin-top: 1rem
+        margin-bottom: 3rem

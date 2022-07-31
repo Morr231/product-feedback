@@ -1,31 +1,46 @@
-import { Link } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
+import { useState } from "react";
 
-import { useDispatch } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
+
+import { useDispatch } from "react-redux/es/exports";
 import { userUpdatedActions } from "../../store/userUpdated";
 
-const AddFeedback = () => {
+const EditProduct = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { state } = useLocation();
+    const { product } = state;
+
+    const [title, setTitle] = useState(product.title);
+    const [description, setDescription] = useState(product.description);
+
+    const allProducts = JSON.parse(window.localStorage.getItem("products"));
+    const changingProduct = allProducts.filter((el) => el.id === product.id)[0];
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const newProduct = {
-            id: uuidv4(),
-            title: e.target.text.value,
-            category: e.target.select.value,
-            upvotes: 0,
-            status: "suggestion",
-            description: e.target.textarea.value,
-            comments: [],
-        };
+        changingProduct.title = e.target.text.value;
+        changingProduct.category = e.target.category.value.toLowerCase();
+        changingProduct.status = e.target.status.value.toLowerCase();
+        changingProduct.description = e.target.textarea.value;
 
-        const allProducts = JSON.parse(window.localStorage.getItem("products"));
-
-        allProducts.push(newProduct);
         window.localStorage.setItem("products", JSON.stringify(allProducts));
-
         dispatch(userUpdatedActions.setUserUpdated());
+        navigate("/");
+    };
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+
+        allProducts.splice(allProducts.indexOf(changingProduct));
+
+        window.localStorage.setItem("products", JSON.stringify(allProducts));
+        dispatch(userUpdatedActions.setUserUpdated());
+        navigate("/");
     };
 
     return (
@@ -35,9 +50,11 @@ const AddFeedback = () => {
             </Link>
 
             <div className="add-feedback-main">
-                <div className="add-feedback-plus">+</div>
+                <div className="add-feedback-plus edit-product-icon">
+                    <FontAwesomeIcon icon={faPen} />
+                </div>
                 <div className="add-feedback-header header-large">
-                    Create New Feedback
+                    Edit 'Add tags for solutions'
                 </div>
 
                 <form className="add-feedback-form" onSubmit={handleSubmit}>
@@ -58,29 +75,57 @@ const AddFeedback = () => {
                             type="text"
                             name="text"
                             className="add-feedback-form__input"
-                            required
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
                         />
                     </div>
 
                     <div className="add-feedback-form__el">
                         <label
-                            htmlFor="select"
+                            htmlFor="category"
                             className="add-feedback-form__label_main"
                         >
                             Category
                         </label>
                         <label
-                            htmlFor="select"
+                            htmlFor="category"
                             className="add-feedback-form__label_secondary"
-                        ></label>
+                        >
+                            Choose a category for your feedback
+                        </label>
                         <select
-                            name="select"
-                            id="select"
+                            name="category"
+                            id="category"
                             className="add-feedback-form__select"
                         >
                             <option value="Feature">Feature</option>
                             <option value="Enhancement">Enhancement</option>
                             <option value="Bug">Bug</option>
+                        </select>
+                    </div>
+
+                    <div className="add-feedback-form__el">
+                        <label
+                            htmlFor="status"
+                            className="add-feedback-form__label_main"
+                        >
+                            Update Status
+                        </label>
+                        <label
+                            htmlFor="status"
+                            className="add-feedback-form__label_secondary"
+                        >
+                            Change feedback state
+                        </label>
+                        <select
+                            name="status"
+                            id="status"
+                            className="add-feedback-form__select"
+                        >
+                            <option value="Suggestion">Suggestion</option>
+                            <option value="Planned">Planned</option>
+                            <option value="In-Progress">In-Progress</option>
+                            <option value="Live">Live</option>
                         </select>
                     </div>
 
@@ -104,11 +149,20 @@ const AddFeedback = () => {
                             className="add-feedback-form__textarea"
                             cols="30"
                             rows="7"
-                            required
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
                         ></textarea>
                     </div>
 
                     <div className="add-feedback-form__buttons">
+                        <div className="add-feedback-form__buttons_container">
+                            <button
+                                className="add-feedback-form__delete"
+                                onClick={handleDelete}
+                            >
+                                Delete
+                            </button>
+                        </div>
                         <Link
                             to="/"
                             style={{ textDecoration: "none", color: "inherit" }}
@@ -121,7 +175,7 @@ const AddFeedback = () => {
                             className="add-feedback-form__button feedback-submit"
                             type="submit"
                         >
-                            Add Feedback
+                            Save Changes
                         </button>
                     </div>
                 </form>
@@ -130,4 +184,4 @@ const AddFeedback = () => {
     );
 };
 
-export default AddFeedback;
+export default EditProduct;

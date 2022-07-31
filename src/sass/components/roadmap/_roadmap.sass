@@ -1,0 +1,24 @@
+@import "roadmap-card"
+
+.roadmap
+    max-width: 108rem
+    margin: 0 auto
+
+    padding-top: 5rem
+
+    &-main
+        display: flex
+
+        @include respond(phone)
+            flex-direction: column
+
+    &-cards
+        flex: 1
+
+        &:not(:last-child)
+            margin-right: 4rem
+
+            @include respond(phone)
+                margin-right: 0
+
+        &-container
